@@ -1,0 +1,14 @@
+body{
+
+  background-color: #f5c270;
+}
+
+
+/* ----------- Container ----------- */
+.container-fluid{
+  max-width: 450px;
+}
+
+.to-do{
+  background-color: white;
+}
