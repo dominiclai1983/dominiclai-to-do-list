@@ -1,5 +1,10 @@
+html, body {
+    height: 100%;
+}
+
 body{
-  background-color: #fcd392;
+  background: linear-gradient(#fde7b5, #f7d18b);
+  background-repeat: no-repeat;
 }
 
 
