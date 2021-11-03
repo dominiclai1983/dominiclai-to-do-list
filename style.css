@@ -1,6 +1,5 @@
 body{
-
-  background-color: #f5c270;
+  background-color: #fcd392;
 }
 
 
@@ -11,4 +10,13 @@ body{
 
 .to-do{
   background-color: white;
+}
+
+.top-icon, .my-text{
+    color: rgba(75, 75, 75, 0.9);
+    vertical-align: middle;
+}
+
+.btn.top-text:disabled{
+  color: black;
 }
