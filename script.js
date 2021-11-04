@@ -123,6 +123,7 @@ $(document).ready(function(){
       if(key.which == 13){
       var input = $(this).val();
       postInputFromField(input);
+      $(this).val('');
     }
   })
 
