@@ -81,20 +81,11 @@ $(document).ready(function(){
 
   getDataFromAPI();
 
-  $(".add-html").disabled = true;
-
   $(".form-control").on('input', function(){
-    $(".add-html").disabled = false;
-    $(".add-item").html("Add");
-  });
-
-  
-  $(".form-control").blur(function(){
-    if(!$('.form-control').val()){
-      $(".add-html").disabled = true;
-      $(".add-item").html("Input");
-    }
-  });
+      if($(this).val()){
+        $('button.add-item').removeAttr('disabled');
+      };
+  })
 
   $("#button-addon1").on('click', function(){
       var input = $('.form-control').val();
