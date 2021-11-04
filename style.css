@@ -1,5 +1,7 @@
 html, body {
-    height: 100%;
+  position: relative; 
+  height: auto;
+  min-height: 100% !important;
 }
 
 body{
