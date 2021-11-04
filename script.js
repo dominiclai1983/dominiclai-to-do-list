@@ -116,7 +116,7 @@ $(document).ready(function(){
       var input = $('.form-control').val();
       console.log(input);
       postInputFromField(input);
-      $(this).val('');
+      $('.form-control').val('');
   })
 
   //input field would listen to "enter" event
