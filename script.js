@@ -29,6 +29,7 @@
   });
 }
 
+//function to post the new task to API
 var postInputFromField = function(input){
       $.ajax({
       type: 'POST',
@@ -64,6 +65,7 @@ var postInputFromField = function(input){
   });
 }
 
+//function to control the completed task
 var completedItemOnAPI = function(completedID){
   $.ajax({
   type: 'PUT',
@@ -84,6 +86,7 @@ var completedItemOnAPI = function(completedID){
 });
 }
 
+//function to control deleting a task
 var deleteItemOnAPI = function(deleteID){
   $.ajax({
     type: 'DELETE',
@@ -134,7 +137,6 @@ $(document).ready(function(){
 
   $(document).on('click', '.form-check-input.check', function(event){
     if($('input[type="checkbox"].check')){
-      console.log('aaaa');
       var completedID = $(this).attr("id").slice(6,11).trim();
       console.log(completedID);
       completedItemOnAPI(completedID);
