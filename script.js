@@ -7,6 +7,7 @@
     success: function (response) {
       response.tasks.forEach(function(index){
         console.log(response);
+        $('#2nd-row').after().empty();
         if(index.completed === false){
           var newContent = index.content;
           $(".2nd-row").after('<div class="row my-2 d-flex align-items-center">'+
@@ -109,6 +110,12 @@ $(document).ready(function(){
       if($(this).val()){
         $('button.add-item').removeAttr('disabled');
       };
+  })
+
+  $('.btn-group button').on('click', function(){
+    $('.btn-group button').removeClass("active");
+    $(this).button('toggle');
+    $(this).addClass('active');
   })
 
   //when click input button on input field, add new task on API
