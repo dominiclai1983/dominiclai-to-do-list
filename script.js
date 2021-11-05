@@ -1,4 +1,4 @@
-//function to get the data of the api with key 1
+//function to get the data of the api with key 102
   var getDataFromAPI = function (){
     $.ajax({
     type: 'GET',
@@ -119,7 +119,7 @@ $(document).ready(function(){
       $('.form-control').val('');
   })
 
-  //input field would listen to "enter" event
+  //input field would listen to the "enter" event
   $(".form-control").on('keypress', function(key){
       if(key.which == 13){
       var input = $(this).val();
@@ -139,6 +139,7 @@ $(document).ready(function(){
 
   $(document).on('click', '.form-check-input.check', function(event){
     if($('input[type="checkbox"].check')){
+      //extract task id to use for completion
       var completedID = $(this).attr("id").slice(6,11).trim();
       console.log(completedID);
       completedItemOnAPI(completedID);
@@ -148,5 +149,3 @@ $(document).ready(function(){
   })
 
 });
-
-      
