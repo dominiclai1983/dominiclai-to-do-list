@@ -150,7 +150,7 @@ $(document).ready(function(){
       };
   })
 
-
+  //function to control which button is active after click 
   $('.button-length').on('click', function(){
     $('.button-length').removeClass('active');
     $(this).addClass('active');
