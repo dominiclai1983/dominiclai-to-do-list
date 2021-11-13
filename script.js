@@ -1,3 +1,5 @@
+
+
 //function to get the data of the api with key 102
   var getDataFromAPI = function (){
     $.ajax({
@@ -5,30 +7,51 @@
     url: 'https://altcademy-to-do-list-api.herokuapp.com/tasks?api_key=201',
     dataType: 'json',
     success: function (response) {
+    $("#list-area").empty();
+    var active = $('#active-button').hasClass('active');
+    var completed = $('#completed-button').hasClass('active');
+    if(active){
       response.tasks.forEach(function(index){
-        console.log(response);
-        $('#2nd-row').after().empty();
         if(index.completed === false){
-          var newContent = index.content;
-          $(".2nd-row").after('<div class="row my-2 d-flex align-items-center">'+
-          '<div class="form-group form-check ml-3 col-1">'+
-          '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
-          '<div class="col-7 no-gutter text-left mr-auto">'+
-          newContent +
-          '</div>'+
-          '<div class="col-2 justify-content-end mr-2">'+
-          '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
-          '</div>'+
-          '</div>'
-          );
-        };
-      })
+            var newContent = index.content;
+            $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
+            '<div class="form-group form-check ml-3 col-1">'+
+            '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
+            '<div class="col-7 no-gutter text-left mr-auto">'+
+            newContent +
+            '</div>'+
+            '<div class="col-2 justify-content-end mr-2">'+
+            '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
+            '</div>'+
+            '</div>'
+            );
+          };
+        });
+      }else if(completed){
+      response.tasks.forEach(function(index){
+        if(index.completed === true){
+            var newContent = index.content;
+            $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
+            '<div class="form-group form-check ml-3 col-1">'+
+            '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
+            '<div class="col-7 no-gutter text-left mr-auto">'+
+            newContent +
+            '</div>'+
+            '<div class="col-2 justify-content-end mr-2">'+
+            '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
+            '</div>'+
+            '</div>'
+            );
+          };
+        });
+      }  
     },
     error: function (request, textStatus, errorMessage) {
       console.log(errorMessage);
     }
   });
 }
+
 
 //function to post the new task to API
 var postInputFromField = function(input){
@@ -45,20 +68,21 @@ var postInputFromField = function(input){
       success: function (response, textStatus) {
         console.log(response);
         console.log(response.task.id);
-  
-        $(".2nd-row").after('<div class="row my-2 d-flex align-items-center">'+
-        '<div class="form-group form-check ml-3 col-1">'+
-        '<input type="checkbox" class="form-check-input check" id="check-' + response.task.id + '">' + '</div>'+
-        '<div class="col-7 no-gutter text-left mr-auto">'+
-        input +
-        '</div>'+
-        '<div class="col-2 justify-content-end mr-2">'+
-        '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + response.task.id + '"' + '>Delete</button>'+
-        '</div>'+
-        '</div>'
-        );
+        var active = $('#active-button').hasClass('active');
+        if(response.task.completed === false && active){
+          $(".2nd-row").after('<div class="row entry my-2 d-flex align-items-center">'+
+          '<div class="form-group form-check ml-3 col-1">'+
+          '<input type="checkbox" class="form-check-input check" id="check-' + response.task.id + '">' + '</div>'+
+          '<div class="col-7 no-gutter text-left mr-auto">'+
+          input +
+          '</div>'+
+          '<div class="col-2 justify-content-end mr-2">'+
+          '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + response.task.id + '"' + '>Delete</button>'+
+          '</div>'+
+          '</div>'
+          );
         //response.task.id use as identifyer for each entry
-        
+        }
       },
       error: function (request, textStatus, errorMessage) {
         console.log(errorMessage);
@@ -103,8 +127,6 @@ var deleteItemOnAPI = function(deleteID){
 
 $(document).ready(function(){
 
-  getDataFromAPI();
-
   //input button active only if input field has vallue
   $(".form-control").on('input', function(){
       if($(this).val()){
@@ -112,16 +134,17 @@ $(document).ready(function(){
       };
   })
 
-  $('.btn-group button').on('click', function(){
-    $('.btn-group button').removeClass("active");
-    $(this).button('toggle');
+
+  $('.button-length').on('click', function(){
+    $('.button-length').removeClass('active');
     $(this).addClass('active');
+    getDataFromAPI();
   })
+
 
   //when click input button on input field, add new task on API
   $("#button-addon1").on('click', function(){
       var input = $('.form-control').val();
-      console.log(input);
       postInputFromField(input);
       $('.form-control').val('');
   })
@@ -154,5 +177,7 @@ $(document).ready(function(){
     }
 
   })
+
+    getDataFromAPI();
 
 });
