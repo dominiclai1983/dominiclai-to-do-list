@@ -10,10 +10,11 @@
     $("#list-area").empty();
     var active = $('#active-button').hasClass('active');
     var completed = $('#completed-button').hasClass('active');
+    var all = $('#all-button').hasClass('active');
     if(active){
       response.tasks.forEach(function(index){
         if(index.completed === false){
-            var newContent = index.content;
+          var newContent = index.content;
             $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
             '<div class="form-group form-check ml-3 col-1">'+
             '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
@@ -30,7 +31,7 @@
       }else if(completed){
       response.tasks.forEach(function(index){
         if(index.completed === true){
-            var newContent = index.content;
+          var newContent = index.content;
             $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
             '<div class="form-group form-check ml-3 col-1">'+
             '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
@@ -43,6 +44,21 @@
             '</div>'
             );
           };
+        });
+      }if(all){
+      response.tasks.forEach(function(index){
+        var newContent = index.content;
+          $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
+          '<div class="form-group form-check ml-3 col-1">'+
+          '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
+          '<div class="col-7 no-gutter text-left mr-auto">'+
+          newContent +
+          '</div>'+
+          '<div class="col-2 justify-content-end mr-2">'+
+          '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
+          '</div>'+
+          '</div>'
+          );
         });
       }  
     },
