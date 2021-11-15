@@ -46,16 +46,21 @@
       }if(all){
       response.tasks.forEach(function(index){
         var newContent = index.content;
-          $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
-          '<div class="form-group form-check ml-3 col-1">'+
-          '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
-          '<div class="col-7 no-gutter text-left mr-auto">'+
-          newContent +
-          '</div>'+
-          '<div class="col-2 justify-content-end mr-2">'+
-          '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
-          '</div>'+
-          '</div>'
+        var task;
+        if(index.completed === true){
+          task = '&#128154;';
+        }else if(index.completed === false){
+          task = '&#129335;';
+        }
+            $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
+            '<div class="ml-3 col-1" class="form-check-input check" id="check-' + index.id + '">' + task + '</div>'+
+            '<div class="col-7 no-gutter text-left mr-auto">'+
+            newContent +
+            '</div>'+
+            '<div class="col-2 justify-content-end mr-2">'+
+            '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
+            '</div>'+
+            '</div>'
           );
         });
       }  
