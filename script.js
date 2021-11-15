@@ -1,5 +1,4 @@
 
-
 //function to get the data of the api with key 102
   var getDataFromAPI = function (){
     $.ajax({
@@ -33,8 +32,7 @@
         if(index.completed === true){
           var newContent = index.content;
             $("#list-area").append('<div class="row my-2 d-flex align-items-center">'+
-            '<div class="form-group form-check ml-3 col-1">'+
-            '<input type="checkbox" class="form-check-input check" id="check-' + index.id + '">' + '</div>'+
+            '<div class="ml-3 col-1" class="form-check-input check" id="check-' + index.id + '">✅</div>'+
             '<div class="col-7 no-gutter text-left mr-auto">'+
             newContent +
             '</div>'+
