@@ -37,7 +37,7 @@
             newContent +
             '</div>'+
             '<div class="col-2 justify-content-end mr-2">'+
-            '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
+             '<button type="button" class="btn btn-secondary btn-sm cancel"' + 'id="id-' + index.id + '"' + '>Delete</button>'+
             '</div>'+
             '</div>'
             );
@@ -149,8 +149,12 @@ $(document).ready(function(){
   //input button active only if input field has vallue
   $(".form-control").on('input', function(){
       if($(this).val()){
-        $('button.add-item').removeAttr('disabled');
+        $('button.add-item').prop('disabled', false);
+        console.log($(this).val().length)
       };
+      if(!($(this).val())){
+        $('button.add-item').prop('disabled', true);
+      }
   })
 
   //function to control which button is active after click 
